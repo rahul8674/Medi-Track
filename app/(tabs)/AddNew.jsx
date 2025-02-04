@@ -7,20 +7,17 @@ export default function AddNewScreen() {
   const [dosage, setDosage] = useState('');
   const [frequency, setFrequency] = useState('');
 
-  const { addMedicine } = useMedicine(); // Access the addMedicine function
+  const { addMedicine } = useMedicine();
 
-  const handleAddMedicine = () => {
+  const handleAddMedicine = async () => {
     if (!medicineName || !dosage || !frequency) {
       Alert.alert('Error', 'Please fill in all fields.');
       return;
     }
 
-    // Save the medicine using context
-    addMedicine({ medicineName, dosage, frequency });
-
+    await addMedicine({ medicineName, dosage, frequency });
     Alert.alert('Success', 'Medicine added successfully!');
 
-    // Clear input fields
     setMedicineName('');
     setDosage('');
     setFrequency('');
@@ -29,7 +26,6 @@ export default function AddNewScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Add a New Medicine</Text>
-
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Medicine Name</Text>
         <TextInput
@@ -40,7 +36,6 @@ export default function AddNewScreen() {
           onChangeText={setMedicineName}
         />
       </View>
-
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Dosage</Text>
         <TextInput
@@ -51,7 +46,6 @@ export default function AddNewScreen() {
           onChangeText={setDosage}
         />
       </View>
-
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Frequency</Text>
         <TextInput
@@ -62,7 +56,6 @@ export default function AddNewScreen() {
           onChangeText={setFrequency}
         />
       </View>
-
       <TouchableOpacity style={styles.button} onPress={handleAddMedicine}>
         <Text style={styles.buttonText}>Add Medicine</Text>
       </TouchableOpacity>
@@ -100,11 +93,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    elevation: 3, // Android shadow effect
-    shadowColor: '#000', // iOS shadow effect
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
   },
   button: {
     backgroundColor: '#007bff',
@@ -112,11 +100,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 20,
-    elevation: 3, // Android shadow
-    shadowColor: '#000', // iOS shadow
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
   },
   buttonText: {
     color: '#fff',
