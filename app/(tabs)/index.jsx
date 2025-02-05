@@ -70,6 +70,7 @@ const MedicineItem = ({ item, onDelete }) => (
       <Text style={styles.medicineName}>{item.medicineName}</Text>
       <Text>Dosage: {item.dosage}</Text>
       <Text>Frequency: {item.frequency}</Text>
+      <Text>Notes: {item.notes}</Text>
     </View>
     <TouchableOpacity onPress={() => onDelete(item.medicineName)} style={styles.deleteButton}>
       <Icon name="delete" size={24} color="red" />
